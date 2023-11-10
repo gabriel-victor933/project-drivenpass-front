@@ -3,6 +3,7 @@ import GlobalStyle from "./styles/GlobalStyle"
 import LoginLayoult from "./components/LoginLayoult"
 import HomeLayoult from "./components/HomeLayoult"
 import Login from "./pages/Login"
+import Signup from "./pages/Signup"
 
 function App() {
 
@@ -13,7 +14,7 @@ function App() {
         <Routes>
           <Route path="/"  element={<LoginLayoult />}> {/*telas de login*/}
             <Route index element={<Login />}/>
-            <Route path="signup" element={<h1>Tela de signup</h1>} />
+            <Route path="signup" element={<Signup />} />
           </Route> 
           <Route path="/home" element={<HomeLayoult />}>{/*telas de home*/}
             <Route index element={<h1>Minhas senhas</h1>} />
