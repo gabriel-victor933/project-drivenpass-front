@@ -6,9 +6,14 @@ export const CategoriesBlock = styled.div`
     padding: 0px 10px;
     margin: 15px 0px;
 
-    h2 {
+    a {
         flex-grow: 1;
         padding-left: 10px;
+        text-decoration: none;
+    }
+
+    h2 {
+        
     }
 
     p {
