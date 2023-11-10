@@ -32,6 +32,24 @@ const GlobalStyle = createGlobalStyle`
         margin: 0px;
         padding: 0px;
     }
+
+    h2 {
+        font-family: Recursive;
+        font-size: 18px;
+        font-weight: 400;
+        line-height: 22px;
+        letter-spacing: 0em;
+        text-align: left;
+        margin: 10px;
+        color: #000000;
+    }
+
+    hr {
+        width: 70%;
+        size: 1px;
+        color: #DBDBDB;
+    }
+
 `
 
 export default GlobalStyle
