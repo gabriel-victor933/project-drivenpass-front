@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import GlobalStyle from "./styles/GlobalStyle"
+import LoginLayoult from "./components/LoginLayoult"
 
 function App() {
 
@@ -8,7 +9,7 @@ function App() {
       <GlobalStyle />
       <BrowserRouter>
         <Routes>
-          <Route path="/"  element={<h1>layout tela de login</h1>}> {/*telas de login*/}
+          <Route path="/"  element={<LoginLayoult />}> {/*telas de login*/}
             <Route index element={<h1>Tela de login</h1>}/>
             <Route path="signup" element={<h1>Tela de signup</h1>} />
           </Route> 
