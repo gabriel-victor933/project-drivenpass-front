@@ -22,8 +22,8 @@ function App() {
             <Route index element={<Home />} />
             <Route path=":type" element={<Passwords />} />
             <Route path=":type/:id" element={<h1>Informação da senha selecionada</h1>} />
-            <Route path="register-type" element={<h1>Escolha do tipo de senha</h1>}/>
-            <Route path="register-datas" element={<h1>Cadastro das infos da senhas</h1>}/>
+            <Route path="register/type" element={<h1>Escolha do tipo de senha</h1>}/>
+            <Route path="register/:type/data" element={<h1>Cadastro das infos da senhas</h1>}/>
           </Route> 
         </Routes>
       </BrowserRouter>

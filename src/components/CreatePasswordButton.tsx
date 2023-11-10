@@ -4,7 +4,7 @@ import { RoundedStyledButton } from "../styles/RoundedButtonStyled"
 function CreatePasswordButton() {
     const navigate = useNavigate()
   return (
-    <RoundedStyledButton onClick={()=> navigate("/home/register-type")}>
+    <RoundedStyledButton onClick={()=> navigate("/home/register/type")}>
         +
     </RoundedStyledButton>
   )
