@@ -25,6 +25,7 @@ const GlobalStyle = createGlobalStyle`
         min-height: 100vh;
         display: flex;
         flex-direction: column;
+        align-items: center;
     }
 
     h1, h2, h3, h4, h5 {

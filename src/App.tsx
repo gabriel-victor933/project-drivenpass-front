@@ -2,6 +2,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom"
 import GlobalStyle from "./styles/GlobalStyle"
 import LoginLayoult from "./components/LoginLayoult"
 import HomeLayoult from "./components/HomeLayoult"
+import Login from "./pages/Login"
 
 function App() {
 
@@ -11,7 +12,7 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/"  element={<LoginLayoult />}> {/*telas de login*/}
-            <Route index element={<h1>Tela de login</h1>}/>
+            <Route index element={<Login />}/>
             <Route path="signup" element={<h1>Tela de signup</h1>} />
           </Route> 
           <Route path="/home" element={<HomeLayoult />}>{/*telas de home*/}
