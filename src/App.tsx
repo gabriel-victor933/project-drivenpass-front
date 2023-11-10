@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route } from "react-router-dom"
 import GlobalStyle from "./styles/GlobalStyle"
 import LoginLayoult from "./components/LoginLayoult"
+import HomeLayoult from "./components/HomeLayoult"
 
 function App() {
 
@@ -13,7 +14,7 @@ function App() {
             <Route index element={<h1>Tela de login</h1>}/>
             <Route path="signup" element={<h1>Tela de signup</h1>} />
           </Route> 
-          <Route path="/home" element={<h1>Layout Tela HOME</h1>}>{/*telas de home*/}
+          <Route path="/home" element={<HomeLayoult />}>{/*telas de home*/}
             <Route index element={<h1>Minhas senhas</h1>} />
             <Route path=":type" element={<h1>Listagem de tipo selecionado</h1>} />
             <Route path=":type/:id" element={<h1>Informação da senha selecionada</h1>} />
