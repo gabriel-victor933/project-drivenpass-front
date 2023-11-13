@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom"
 import  {useMutation} from "@tanstack/react-query"
 import axios from "axios"
 import Modal from "../components/Modal"
+import Loading from "../components/Loading"
 
 type SignUp = {
   email: string,
@@ -23,16 +24,14 @@ function Signup() {
       e.preventDefault()
       e.stopPropagation();
       mutation.mutate({
-        email: "gaaa11bsaasrssiasasel12313129sssas098@gmail.com",
+        email: "gaaa11bsaasrssiasasel12313129sssas098",
         password: "jashkAAHSH788+-"
       })
   }
 
-  if(mutation.isPending) return (<div>Loading!!</div>)
+  if(mutation.isPending) return (<Loading />)
 
-  console.log(mutation.data)
   console.log(mutation.error)
-
 
   return (
     <>
@@ -49,7 +48,7 @@ function Signup() {
     </FormStyled>
     {mutation.isError && <Modal 
         title={"Não foi possivel cadastrar o usuario"} 
-        description={`"${mutation.error.response.data.message}"`}
+        description={`"${mutation.error.response?.data.message || mutation.error.message}"`}
         buttonMessage={"voltar"} 
         buttonfn={() =>mutation.reset()}
         color="#FB9B9B"
@@ -57,7 +56,6 @@ function Signup() {
         
     {mutation.isSuccess && <Modal title={"Usuario Cadastrado com sucesso"} buttonMessage={"Logar"} buttonfn={() => navigate("/")}/>}
 
-    
 </>
   )
 }
