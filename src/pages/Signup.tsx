@@ -36,7 +36,7 @@ function Signup() {
         <input type="text" {...register("email",{required: "insira um Email"})} className={errors.email ?"error": ""}/>
         {errors.email && <small>{errors.email.message}</small>}
         <label htmlFor="">Senha</label>
-        <input type="text" {...register("password",{required: "Insira uma senha"})} className={errors.password ?"error": ""}/>
+        <input type="password" {...register("password",{required: "Insira uma senha"})} className={errors.password ?"error": ""}/>
         {errors.password && <small>{errors.password.message}</small>}
         <ButtonStyled>Criar</ButtonStyled>
         <Link to="/">
