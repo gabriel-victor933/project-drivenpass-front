@@ -1,13 +1,36 @@
 import { FormStyled } from "../styles/FormStyle"
 import { ButtonStyled } from "../styles/ButtonStyled"
 import { Link } from "react-router-dom"
+import  {useMutation} from "@tanstack/react-query"
+import axios from "axios"
+
+type SignUp = {
+  email: string,
+  password: string
+}
 
 function Signup() {
+
+  const mutation = useMutation({
+    mutationFn: (newUser: SignUp) => {
+      return axios.post(`${import.meta.env.VITE_API_URL}/users/sign-up`,newUser)
+    }
+  })
 
   async function postSignup(e: React.FormEvent){
       e.preventDefault()
       e.stopPropagation();
+      mutation.mutate({
+        email: "ga11briel12313129sas098@gmail.com",
+        password: "jashkAAHSH788+-"
+      })
   }
+
+  if(mutation.isPending) return (<div>Loading!!</div>)
+
+  if(mutation.isError) return (<div>Error</div>)
+
+  if(mutation.isSuccess) return (<div>Usuario cadastrado com sucesso!!</div>)
 
   return (
     <>
