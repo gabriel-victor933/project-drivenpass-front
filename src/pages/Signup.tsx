@@ -3,6 +3,7 @@ import { ButtonStyled } from "../styles/ButtonStyled"
 import { Link } from "react-router-dom"
 import  {useMutation} from "@tanstack/react-query"
 import axios from "axios"
+import Modal from "../components/Modal"
 
 type SignUp = {
   email: string,
@@ -45,7 +46,7 @@ function Signup() {
         </Link>
         
     </FormStyled>
-
+    <Modal />
 </>
   )
 }
