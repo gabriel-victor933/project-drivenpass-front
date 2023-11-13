@@ -36,15 +36,16 @@ type ModalProps = {
     description?: string,
     buttonMessage: string,
     buttonfn: () => void;
+    color?: string
 }
 
-const  Modal: React.FC<ModalProps> = ({title, description, buttonMessage, buttonfn }) =>  {
+const  Modal: React.FC<ModalProps> = ({title, description, buttonMessage, buttonfn, color }) =>  {
   return (
     <Container>
         <div className="block">
             <h2 style={{fontWeight: "bold"}}>{title}</h2>
-            {description ? <h2>{description}</h2> : <></>}
-            <ButtonStyled $buttonWidth={"90%"} onClick={() => buttonfn}>{buttonMessage}</ButtonStyled>
+            {description ? <h2 style={{fontStyle: "oblique"}}>{description}</h2> : <></>}
+            <ButtonStyled $buttonWidth={"90%"} $backColor={color} onClick={buttonfn}>{buttonMessage}</ButtonStyled>
         </div>
     </Container>
   )

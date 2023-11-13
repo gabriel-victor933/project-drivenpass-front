@@ -1,6 +1,6 @@
 import { FormStyled } from "../styles/FormStyle"
 import { ButtonStyled } from "../styles/ButtonStyled"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
 import  {useMutation} from "@tanstack/react-query"
 import axios from "axios"
 import Modal from "../components/Modal"
@@ -11,6 +11,7 @@ type SignUp = {
 }
 
 function Signup() {
+  const navigate = useNavigate()
 
   const mutation = useMutation({
     mutationFn: (newUser: SignUp) => {
@@ -22,16 +23,16 @@ function Signup() {
       e.preventDefault()
       e.stopPropagation();
       mutation.mutate({
-        email: "ga11briel12313129sas098@gmail.com",
+        email: "gaaa11bsaasrssiasasel12313129sssas098@gmail.com",
         password: "jashkAAHSH788+-"
       })
   }
 
   if(mutation.isPending) return (<div>Loading!!</div>)
 
-  if(mutation.isError) return (<div>Error</div>)
+  console.log(mutation.data)
+  console.log(mutation.error)
 
-  if(mutation.isSuccess) return (<div>Usuario cadastrado com sucesso!!</div>)
 
   return (
     <>
@@ -46,7 +47,17 @@ function Signup() {
         </Link>
         
     </FormStyled>
-    <Modal />
+    {mutation.isError && <Modal 
+        title={"Não foi possivel cadastrar o usuario"} 
+        description={`"${mutation.error.response.data.message}"`}
+        buttonMessage={"voltar"} 
+        buttonfn={() =>mutation.reset()}
+        color="#FB9B9B"
+        />}
+        
+    {mutation.isSuccess && <Modal title={"Usuario Cadastrado com sucesso"} buttonMessage={"Logar"} buttonfn={() => navigate("/")}/>}
+
+    
 </>
   )
 }
