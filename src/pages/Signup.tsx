@@ -31,8 +31,6 @@ function Signup() {
 
   if(mutation.isPending) return (<Loading />)
 
-  console.log(mutation.error)
-
   return (
     <>
     <FormStyled onSubmit={postSignup}>
