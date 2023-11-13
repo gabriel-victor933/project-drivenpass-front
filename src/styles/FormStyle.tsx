@@ -6,8 +6,6 @@ export const FormStyled = styled.form`
     width: 70%;
     margin: 30px 0px;
     
-
-
     label {
         text-align: center; 
         margin: 3px 0px;
@@ -22,5 +20,13 @@ export const FormStyled = styled.form`
         border-radius: 5px;
         border: solid 3px #005985;
         margin-bottom: 8px;        
+    }
+
+    .error {
+        border-color: #F52424;
+    }
+
+    small {
+        color: #F52424
     }
 `

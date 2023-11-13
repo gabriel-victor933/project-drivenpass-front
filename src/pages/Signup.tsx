@@ -5,8 +5,9 @@ import  {useMutation} from "@tanstack/react-query"
 import axios from "axios"
 import Modal from "../components/Modal"
 import Loading from "../components/Loading"
+import {useForm} from "react-hook-form"
 
-type SignUp = {
+type SignUpInput = {
   email: string,
   password: string
 }
@@ -14,30 +15,29 @@ type SignUp = {
 function Signup() {
   const navigate = useNavigate()
 
+  const { register, handleSubmit, formState: {errors} } = useForm<SignUpInput>()
+
   const mutation = useMutation({
-    mutationFn: (newUser: SignUp) => {
+    mutationFn: (newUser: SignUpInput) => {
       return axios.post(`${import.meta.env.VITE_API_URL}/users/sign-up`,newUser)
     }
   })
 
-  async function postSignup(e: React.FormEvent){
-      e.preventDefault()
-      e.stopPropagation();
-      mutation.mutate({
-        email: "gaaa11bsaasrssiasasel12313129sssas098",
-        password: "jashkAAHSH788+-"
-      })
+  async function postSignup(data: SignUpInput){
+      mutation.mutate(data)
   }
 
   if(mutation.isPending) return (<Loading />)
 
   return (
     <>
-    <FormStyled onSubmit={postSignup}>
+    <FormStyled onSubmit={handleSubmit(postSignup)}>
         <label htmlFor="">Usuário (e-mail)</label>
-        <input type="text" name="user"/>
+        <input type="text" {...register("email",{required: "insira um Email"})} className={errors.email ?"error": ""}/>
+        {errors.email && <small>{errors.email.message}</small>}
         <label htmlFor="">Senha</label>
-        <input type="text" name="password"/>
+        <input type="text" {...register("password",{required: "Insira uma senha"})} className={errors.password ?"error": ""}/>
+        {errors.password && <small>{errors.password.message}</small>}
         <ButtonStyled>Criar</ButtonStyled>
         <Link to="/">
             <ButtonStyled $backColor="#FB9B9B">&lt; Voltar </ButtonStyled>
