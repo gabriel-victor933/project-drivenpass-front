@@ -3,9 +3,15 @@ import { ButtonStyled } from "../styles/ButtonStyled"
 import { Link } from "react-router-dom"
 
 function Signup() {
+
+  async function postSignup(e: React.FormEvent){
+      e.preventDefault()
+      e.stopPropagation();
+  }
+
   return (
     <>
-    <FormStyled>
+    <FormStyled onSubmit={postSignup}>
         <label htmlFor="">Usuário (e-mail)</label>
         <input type="text" name="user"/>
         <label htmlFor="">Senha</label>

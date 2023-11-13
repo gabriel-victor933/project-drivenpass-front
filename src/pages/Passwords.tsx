@@ -1,6 +1,6 @@
 import { CategoriesBlock } from "../styles/CategoriesBlock"
 import { InfoBlock } from "../styles/PageInfoStyle"
-import { useParams } from "react-router-dom"
+import { useParams, Link } from "react-router-dom"
 import CreatePasswordButton from "../components/CreatePasswordButton"
 import cred from "../assets/images/credentials.png"
 import notes from "../assets/images/notes.png"
@@ -32,7 +32,8 @@ function Passwords() {
         <InfoBlock>{typesTranslation[type]}</InfoBlock>
         <CategoriesBlock>
             <img src={imagesTranslation[type]} />
-            <h2>Credential title1</h2>
+            <Link to="/home"><h2>Credential title1</h2></Link>
+            
         </CategoriesBlock>
         <CategoriesBlock>
             <img src={imagesTranslation[type]} />
