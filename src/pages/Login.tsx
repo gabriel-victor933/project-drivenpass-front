@@ -21,10 +21,10 @@ function Login() {
   const mutation = useMutation({
     mutationFn: (userInfos: SignUpInput) => {
       return axios.post(`${import.meta.env.VITE_API_URL}/users/sign-in`, userInfos)
-      .then((data) => {
-        localStorage.setItem("token",data.data.token)
+    },
+    onSuccess: (data: unknown) => {
+      localStorage.setItem("token",data?.data?.token)
         navigate("/home")
-      })
     }
   })
 
