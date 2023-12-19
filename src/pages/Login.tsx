@@ -52,7 +52,7 @@ function Login() {
         </Link>
         {mutation.isError && <Modal 
         title={"Não foi possivel logar, verifique o email e a senha"} 
-        description={`"${mutation.error.response?.data.message || mutation.error.message}"`}
+        description={`"${mutation.error?.response?.data.message || mutation.error.message}"`}
         buttonMessage={"voltar"} 
         buttonfn={() =>mutation.reset()}
         color="#FB9B9B"
