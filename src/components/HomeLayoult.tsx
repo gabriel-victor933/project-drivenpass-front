@@ -2,6 +2,8 @@ import styled from "styled-components"
 import { Outlet } from "react-router-dom"
 import logo from "../assets/images/Vector.png"
 import exit from "../assets/images/exit.png"
+import { Link,useNavigate } from "react-router-dom"
+import { useEffect } from "react"
 
 const Header = styled.header`
     width: 100%;
@@ -10,6 +12,10 @@ const Header = styled.header`
     align-items: center;
     justify-content: space-between;
     padding: 7px;
+
+    a {
+        text-decoration: none;
+    }
 `
 
 const Logo = styled.img<{$logoHeight?: string;}>`
@@ -24,12 +30,23 @@ const Title = styled.h1`
 `
 
 function HomeLayoult() {
+    const navigate = useNavigate()
+
+    useEffect(()=>{
+        const token = localStorage.getItem("token")
+        if(!token) navigate("/")
+    },[navigate])
+
+    function handleExit(){
+        localStorage.removeItem("token");
+        navigate("/");
+    }
   return (
     <>
         <Header>
             <Logo src={logo}/>
-            <Title>DrivenPass</Title>
-            <Logo src={exit} $logoHeight={"45px"}/>
+            <Link to="/home"><Title>DrivenPass</Title></Link>
+            <Logo src={exit} $logoHeight={"45px"} onClick={handleExit}/>
         </Header>
         <Outlet />
     </>

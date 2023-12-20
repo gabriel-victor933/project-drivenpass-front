@@ -32,11 +32,11 @@ function Signup() {
   return (
     <>
     <FormStyled onSubmit={handleSubmit(postSignup)}>
-        <label htmlFor="">Usuário (e-mail)</label>
-        <input type="text" {...register("email",{required: "insira um Email"})} className={errors.email ?"error": ""}/>
+        <label htmlFor="email">Usuário (e-mail)</label>
+        <input type="text" autoComplete="email" {...register("email",{required: "insira um Email"})} className={errors.email ?"error": ""}/>
         {errors.email && <small>{errors.email.message}</small>}
         <label htmlFor="">Senha</label>
-        <input type="password" {...register("password",{required: "Insira uma senha"})} className={errors.password ?"error": ""}/>
+        <input type="password" autoComplete="password" {...register("password",{required: "Insira uma senha"})} className={errors.password ?"error": ""}/>
         {errors.password && <small>{errors.password.message}</small>}
         <ButtonStyled>Criar</ButtonStyled>
         <Link to="/">

@@ -96,7 +96,7 @@ function Passwords() {
         {info.data.map((pass)=>{
             return (<CategoriesBlock key={pass.id}>
                 <img src={imagesTranslation[type]} />
-                <Link to="/home"><h2>{pass.title}</h2></Link>
+                <Link to="/hocd me"><h2>{pass.title}</h2></Link>
             </CategoriesBlock>)
         })}
     </>
