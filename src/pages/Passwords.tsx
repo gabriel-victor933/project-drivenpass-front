@@ -1,6 +1,6 @@
 import { CategoriesBlock } from "../styles/CategoriesBlock"
 import { InfoBlock } from "../styles/PageInfoStyle"
-import { useParams, Link } from "react-router-dom"
+import { useParams, Link, useNavigate } from "react-router-dom"
 import { useQuery } from "@tanstack/react-query"
 import CreatePasswordButton from "../components/CreatePasswordButton"
 import cred from "../assets/images/credentials.png"
@@ -8,12 +8,21 @@ import notes from "../assets/images/notes.png"
 import cards from "../assets/images/cards.png"
 import wifi from "../assets/images/wifi.png"
 import { useFetchData } from "../hooks/useFetchData"
+import Modal from "../components/Modal"
+import Loading from "../components/Loading"
 
 const typesTranslation = {
     credentials: "credenciais",
     notes: "Notas Seguras",
     cards: "Cartões",
     wifis: "Senhas de Wifi"
+}
+
+const typesSingularTranslation = {
+    credentials: "Nenhuma credencial encontrada.",
+    notes: "Nenhuma Nota Segura encontrada.",
+    cards: "Nenhum Cartão encontrado.",
+    wifis: "Nenhuma Senha de Wifi encontrada."
 }
 
 const imagesTranslation = {
@@ -26,8 +35,8 @@ const imagesTranslation = {
 function Passwords() {
 
     const {type} = useParams()
+    const navigate = useNavigate()
     
-    //carregar Senhas do Banco de Dados usando o react query
     const info = useQuery({
         queryKey: [type],
         queryFn: () => {
@@ -36,42 +45,60 @@ function Passwords() {
         }
         })
 
-    //ESTADOS POSSIVEIS DA REQUISIÇÃO:
-    
-    //invalid URL
     if(!Object.keys(typesTranslation).includes(type)){
-        return <p>Invalid URL!</p>
+        return (<>
+                <InfoBlock />
+                <Modal 
+                    title={"Error 404"} 
+                    description={`Página não encontrada`}
+                    buttonMessage={"voltar"} 
+                    buttonfn={() =>navigate("/home")}
+                    color="#FB9B9B"
+                />
+                </>)
     }
 
-    // Nenhum elemento encontrado;
-    if(info.isError && info.error?.response.status == "404"){
+    if(info.isError && info.error?.response?.status == "404"){
+        return (<>
+                <InfoBlock>{typesTranslation[type]}</InfoBlock>
+                <CategoriesBlock>
+                    <h2>{typesSingularTranslation[type]}</h2>
+                </CategoriesBlock>
+                <CreatePasswordButton url={`/home/register/${type}/data`}/>
+                </>) 
         
-        return <p>Nenhum elemento encontrado!</p>
     }
-    /// Erro do backend;
+    
     if(info.isError){
-        console.log(info)
-        return <p>Error!</p>
+        return (<>
+            <InfoBlock />
+            <Modal 
+                title={"ERROR"} 
+                description={`Não foi possível acessar a página no momento tente novamente mais tarde.`}
+                buttonMessage={"voltar"} 
+                buttonfn={() =>navigate("/home")}
+                color="#FB9B9B"
+            />
+            </>)
     }
     
-    // Loading;
-    if(info.isLoading) return <InfoBlock>Loading...</InfoBlock>
+    if(info.isLoading){
+        return (<>
+                <InfoBlock>Loading...</InfoBlock>
+                <Loading />
+                </>)
+        
+    } 
     
-    // OK;
-    console.log(info)
   return (
     <>
         <InfoBlock>{typesTranslation[type]}</InfoBlock>
-        <CategoriesBlock>
-            <img src={imagesTranslation[type]} />
-            <Link to="/home"><h2>Credential title1</h2></Link>
-            
-        </CategoriesBlock>
-        <CategoriesBlock>
-            <img src={imagesTranslation[type]} />
-            <h2>Credential title2</h2>
-        </CategoriesBlock>
-        <CreatePasswordButton />
+        {info.data.map((pass)=>{
+            return (<CategoriesBlock key={pass.id}>
+                <img src={imagesTranslation[type]} />
+                <Link to="/home"><h2>{pass.title}</h2></Link>
+            </CategoriesBlock>)
+        })}
     </>
   )
 }

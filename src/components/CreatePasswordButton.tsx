@@ -1,10 +1,10 @@
 import { useNavigate } from "react-router-dom"
 import { RoundedStyledButton } from "../styles/RoundedButtonStyled"
 
-function CreatePasswordButton() {
+const CreatePasswordButton: React.FC<{url:string}> = ({url}) => {
     const navigate = useNavigate()
   return (
-    <RoundedStyledButton onClick={()=> navigate("/home/register/type")}>
+    <RoundedStyledButton onClick={()=> navigate(url)}>
         +
     </RoundedStyledButton>
   )

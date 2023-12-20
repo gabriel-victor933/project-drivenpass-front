@@ -30,7 +30,7 @@ function Home() {
             <Link to="/home/wifis" ><h2>Senhas de Wi-fi</h2></Link>
             <p className="ball">1</p>
         </CategoriesBlock>
-        <CreatePasswordButton />
+        <CreatePasswordButton url={"/home/register/type"}/>
     </>
   )
 }
