@@ -7,6 +7,7 @@ import Signup from "./pages/Signup"
 import Home from "./pages/Home"
 import Passwords from "./pages/Passwords"
 import Categories from "./pages/Categories"
+import SelectedPassword from "./pages/SelectedPassword"
 
 function App() {
 
@@ -22,7 +23,7 @@ function App() {
           <Route path="/home" element={<HomeLayoult />}>{/*telas de home*/}
             <Route index element={<Home />} />
             <Route path=":type" element={<Passwords />} />
-            <Route path=":type/:id" element={<h1>Informação da senha selecionada</h1>} />
+            <Route path=":type/:id" element={<SelectedPassword />} />
             <Route path="register/type" element={<Categories />}/>
             <Route path="register/:type/data" element={<h1>Cadastro das infos da senhas</h1>}/>
           </Route> 
