@@ -7,6 +7,7 @@ import { useFetchData } from "../hooks/useFetchData"
 import Modal from "../components/Modal"
 import Loading from "../components/Loading"
 import { typesTranslation, typesSingularTranslation, imagesTranslation } from "../constants/objectsets"
+import ReturnButton from "../components/ReturnButton"
 
 
 function Passwords() {
@@ -76,6 +77,7 @@ function Passwords() {
                 <Link to={`${pass.id}`}><h2>{pass.title}</h2></Link>
             </CategoriesBlock>)
         })}
+        <ReturnButton />
     </>
   )
 }

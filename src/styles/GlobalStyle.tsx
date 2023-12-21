@@ -44,6 +44,17 @@ const GlobalStyle = createGlobalStyle`
         color: #000000;
     }
 
+    h1 {
+        font-family: Recursive;
+        font-size: 20px;
+        font-weight: 700;
+        line-height: 22px;
+        letter-spacing: 0em;
+        text-align: left;
+        margin: 10px;
+        color: #000000;
+    }
+
     hr {
         width: 70%;
         size: 1px;

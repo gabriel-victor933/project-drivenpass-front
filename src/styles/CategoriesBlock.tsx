@@ -12,10 +12,6 @@ export const CategoriesBlock = styled.div`
         text-decoration: none;
     }
 
-    h2 {
-        
-    }
-
     p {
         align-self: center;
         width:  35px;

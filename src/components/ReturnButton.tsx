@@ -6,10 +6,11 @@ const StyledButton = styled.button`
     text-decoration: underline;
     border: none;
     font-size: 18px;
-    position: fixed;
+    position: absolute;
     font-family: "Recursive";
-    left: 20px;
-    bottom: 30px;
+    right: 20px;
+    top: 108px;
+    color: #fff;
 `
 
 function ReturnButton() {
