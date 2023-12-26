@@ -40,10 +40,10 @@ function Login() {
         <FormStyled onSubmit={handleSubmit(postLogin)}>
             <label htmlFor="email">Usuário (e-mail)</label>
             <input type="text" autoComplete="email" {...register("email",{required: "insira um Email"})} className={errors.email ?"error": ""}/>
-            {errors.email && <small>{errors.email.message}</small>}
+            <small>{errors?.email?.message || ""}</small>
             <label htmlFor="password">Senha</label>
             <input type="password" autoComplete="password" {...register("password",{required: "Insira uma senha"})} className={errors.password ?"error": ""}/>
-            {errors.password && <small>{errors.password.message}</small>}
+            <small>{errors?.password?.message || ""}</small>
             <ButtonStyled>Acessar</ButtonStyled>
         </FormStyled>
         <hr></hr>

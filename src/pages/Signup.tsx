@@ -34,10 +34,10 @@ function Signup() {
     <FormStyled onSubmit={handleSubmit(postSignup)}>
         <label htmlFor="email">Usuário (e-mail)</label>
         <input type="text" autoComplete="email" {...register("email",{required: "insira um Email"})} className={errors.email ?"error": ""}/>
-        {errors.email && <small>{errors.email.message}</small>}
+        <small>{errors.email?.message || ""}</small>
         <label htmlFor="">Senha</label>
         <input type="password" autoComplete="password" {...register("password",{required: "Insira uma senha"})} className={errors.password ?"error": ""}/>
-        {errors.password && <small>{errors.password.message}</small>}
+        <small>{errors.password?.message || ""}</small>
         <ButtonStyled>Criar</ButtonStyled>
         <Link to="/">
             <ButtonStyled $backColor="#FB9B9B">&lt; Voltar </ButtonStyled>

@@ -19,7 +19,7 @@ export const FormStyled = styled.form`
         height: 40px;
         border-radius: 5px;
         border: solid 3px #005985;
-        margin-bottom: 8px;        
+        margin-bottom: 2px;        
     }
 
     .error {
@@ -27,6 +27,7 @@ export const FormStyled = styled.form`
     }
 
     small {
-        color: #F52424
+        color: #F52424;
+        min-height: 16px;
     }
 `
