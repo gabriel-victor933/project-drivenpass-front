@@ -2,12 +2,12 @@ import { CategoriesBlock } from "../styles/CategoriesBlock"
 import { InfoBlock } from "../styles/PageInfoStyle"
 import { useParams, Link, useNavigate } from "react-router-dom"
 import { useQuery } from "@tanstack/react-query"
-import CreatePasswordButton from "../components/CreatePasswordButton"
-import { useFetchData } from "../hooks/useFetchData"
 import Modal from "../components/Modal"
 import Loading from "../components/Loading"
 import { typesTranslation, typesSingularTranslation, imagesTranslation } from "../constants/objectsets"
 import ReturnButton from "../components/ReturnButton"
+import { useApiCall } from "../hooks/useApiCall"
+import ActionButton from "../components/ActionButton"
 
 
 function Passwords() {
@@ -19,8 +19,9 @@ function Passwords() {
         queryKey: [type],
         queryFn: () => {
             // eslint-disable-next-line react-hooks/rules-of-hooks
-            return useFetchData(type)    
-        }
+            return useApiCall(type,"get")    
+        },
+        retry: false
         })
 
     if(!Object.keys(typesTranslation).includes(type)){
@@ -42,7 +43,9 @@ function Passwords() {
                 <CategoriesBlock>
                     <h2>{typesSingularTranslation[type]}</h2>
                 </CategoriesBlock>
-                <CreatePasswordButton url={`/home/register/${type}/data`}/>
+                <ActionButton url={`/home/register/${type}/data`} backColor="">
+                    +
+                </ActionButton>
                 </>) 
         
     }

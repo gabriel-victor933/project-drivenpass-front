@@ -1,30 +1,56 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 import { useNavigate, useParams } from "react-router-dom"
 import { InfoBlock } from "../styles/PageInfoStyle"
-import { useQuery } from "@tanstack/react-query"
+import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
 import { useFetchData } from "../hooks/useFetchData"
-import { typesTranslation, typesSingularTranslation, imagesTranslation } from "../constants/objectsets"
+import { typesTranslation, typesSingularTranslation } from "../constants/objectsets"
 import Loading from "../components/Loading"
 import PasswordInfoStyled from "../styles/PasswordInfoStyled"
 import ReturnButton from "../components/ReturnButton"
 import Modal from "../components/Modal"
+import ActionButton from "../components/ActionButton"
+import { useApiCall } from "../hooks/useApiCall"
 
 
 function SelectedPassword() {
 
     const {type,id} = useParams()
     const navigate = useNavigate()
+    const queryClient = useQueryClient()
 
     const info = useQuery({
-        queryKey: [type,id],
+        queryKey: [type,{id: id}],
         queryFn: () => {
             // eslint-disable-next-line react-hooks/rules-of-hooks
-            return useFetchData(`${type}/${id}`)
+            return useApiCall(`${type}/${id}`,"get")
+        },
+        retry: false
+    })
+
+    const deleteData = useMutation({
+        mutationFn: () => {
+            return useApiCall(`${type}/${id}`,"delete")
+        },
+        onSuccess: () => {
+            queryClient.invalidateQueries({
+                queryKey: [type]
+            })
+            
         }
     })
 
-    //TODO: tratar os seguintes casos;
-    // NOT FOUND;
-    // BACKEND ERROR
+    if(deleteData.isSuccess){
+        return (<>
+            <InfoBlock />
+            <Modal 
+                title={"Deletado com sucesso!"} 
+                description={``}
+                buttonMessage={"Voltar"} 
+                buttonfn={() =>navigate("/home")}
+                color="#9BFBB0"
+            />
+            </>)
+    }
 
     if(info.isError && info.error?.response?.status == "404"){
         return (<>
@@ -53,16 +79,13 @@ function SelectedPassword() {
             </>)
     }
 
-    if(info.isLoading){
+    if(info.isLoading || deleteData.isPending){
         return (<>
                 <InfoBlock>Loading...</InfoBlock>
                 <Loading />
                 </>)
         
-    } 
-    
-    console.log(info)
-    
+    }  
     
   return (
     <>
@@ -78,6 +101,9 @@ function SelectedPassword() {
             })}
         </PasswordInfoStyled>
         <ReturnButton />
+        <ActionButton fn={()=>deleteData.mutate()} backColor={"#fc0303"}>
+            X
+        </ActionButton>
     </>
     
   )

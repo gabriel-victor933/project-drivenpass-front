@@ -11,4 +11,5 @@ export const RoundedStyledButton = styled.button<{$backColor?: string}>`
     position: fixed;
     bottom: 30px;
     right: 30px;
+    cursor: pointer;
 `

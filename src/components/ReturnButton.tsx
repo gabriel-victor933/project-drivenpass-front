@@ -11,6 +11,7 @@ const StyledButton = styled.button`
     right: 20px;
     top: 108px;
     color: #fff;
+    cursor: pointer;
 `
 
 function ReturnButton() {

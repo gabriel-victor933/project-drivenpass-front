@@ -4,9 +4,10 @@ import cred from "../assets/images/credentials.png"
 import notes from "../assets/images/notes.png"
 import cards from "../assets/images/cards.png"
 import wifi from "../assets/images/wifi.png"
-import CreatePasswordButton from "../components/CreatePasswordButton"
-import { Link } from "react-router-dom"
+import { Link, useNavigate } from "react-router-dom"
+import ActionButton from "../components/ActionButton"
 function Home() {
+    const navigate = useNavigate()
   return (
     <>
         <InfoBlock>Minhas Senhas</InfoBlock>
@@ -30,7 +31,10 @@ function Home() {
             <Link to="/home/wifis" ><h2>Senhas de Wi-fi</h2></Link>
             <p className="ball">1</p>
         </CategoriesBlock>
-        <CreatePasswordButton url={"/home/register/type"}/>
+        
+        <ActionButton fn={() => navigate("/home/register/type")} backColor="">
+            +
+        </ActionButton>
     </>
   )
 }
