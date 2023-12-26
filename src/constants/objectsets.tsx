@@ -4,7 +4,7 @@ import cards from "../assets/images/cards.png"
 import wifi from "../assets/images/wifi.png"
 
 export const typesTranslation = {
-    credentials: "credenciais",
+    credentials: "Credenciais",
     notes: "Notas Seguras",
     cards: "Cartões",
     wifis: "Senhas de Wifi"

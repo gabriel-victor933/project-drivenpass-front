@@ -13,19 +13,19 @@ function Categories() {
         <InfoBlock>Escolha Uma Categoria</InfoBlock>
         <CategoriesBlock>
             <img src={cred}/>
-            <Link to="/home/register/credentials/data" ><h2>Credentials</h2></Link>
+            <Link to="/home/register/data/credentials" ><h2>Credentials</h2></Link>
         </CategoriesBlock>
         <CategoriesBlock>
             <img src={notes}/>
-            <Link to="/home/register/notes/data" ><h2>Notas Seguras</h2></Link>
+            <Link to="/home/register/data/notes" ><h2>Notas Seguras</h2></Link>
         </CategoriesBlock>
         <CategoriesBlock>
             <img src={cards}/>
-            <Link to="/home/register/cards/data" ><h2>Cartões</h2></Link>
+            <Link to="/home/register/data/cards" ><h2>Cartões</h2></Link>
         </CategoriesBlock>
         <CategoriesBlock>
             <img src={wifi}/>
-            <Link to="/home/register/wifis/data" ><h2>Senhas de Wi-fi</h2></Link>
+            <Link to="/home/register/data/wifis" ><h2>Senhas de Wi-fi</h2></Link>
         </CategoriesBlock>
         
         <ReturnButton />
