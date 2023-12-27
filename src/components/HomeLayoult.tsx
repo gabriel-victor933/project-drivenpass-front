@@ -25,7 +25,7 @@ const Logo = styled.img<{$logoHeight?: string;}>`
 
 const Title = styled.h1`
     font-family: "Righteous";
-    size: 38px;
+    font-size: 38px;
     color: #005985;
 `
 
