@@ -5,6 +5,8 @@ import {useForm} from "react-hook-form"
 import axios from 'axios'
 import Modal from '../components/Modal'
 import { useNavigate } from 'react-router-dom'
+import usePostData from '../hooks/usePostData'
+
 type CredentialInput = {
     title: string,
     url: string,
@@ -20,11 +22,8 @@ function CredentialsRegistration() {
 
     const post = useMutation({
         mutationFn: (data: CredentialInput) => {
-            console.log(data)
-            const token = localStorage.getItem("token");
-            return axios.post(`${import.meta.env.VITE_API_URL}/credentials`,data,{headers: {'authorization': `bearer ${token}`}})
-                    
-                    
+            // eslint-disable-next-line react-hooks/rules-of-hooks
+            return usePostData<CredentialInput>("credentials",data);      
         },
     })
 
