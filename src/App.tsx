@@ -10,6 +10,7 @@ import Categories from "./pages/Categories"
 import SelectedPassword from "./pages/SelectedPassword"
 import RegistrationLayoult from "./components/RegistrationLayoult"
 import CredentialsRegistration from "./pages/CredentialsRegistration"
+import NotesRegistration from "./pages/NotesRegistration"
 
 function App() {
 
@@ -29,7 +30,7 @@ function App() {
             <Route path="register/type" element={<Categories />}/>
             <Route path="register/data" element={<RegistrationLayoult />}>
                 <Route path="credentials" element={<CredentialsRegistration />} />
-                <Route path="notes" element={<h1>notes</h1>} />
+                <Route path="notes" element={<NotesRegistration />} />
                 <Route path="cards" element={<h1>cards</h1>} />
                 <Route path="wifis" element={<h1>wifis</h1>} />
                 <Route path="*" element={<h1>not found!</h1>} />

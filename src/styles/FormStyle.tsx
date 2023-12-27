@@ -18,7 +18,7 @@ export const FormStyled = styled.form`
     input {
         height: 40px;
         border-radius: 5px;
-        border: solid 3px #005985;
+        border: solid 2px #005985;
         margin-bottom: 2px;        
     }
 

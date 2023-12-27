@@ -9,6 +9,12 @@ const RegistrationFormStyle = styled(FormStyled)`
         text-align: left; 
     }
 
+    textarea {
+        resize: none;
+        border-radius: 5px;
+        border: solid 2px #005985;
+    }
+
 `   
 
 export default RegistrationFormStyle
