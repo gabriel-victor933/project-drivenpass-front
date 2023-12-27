@@ -50,9 +50,15 @@ function Signup() {
         buttonMessage={"voltar"} 
         buttonfn={() =>mutation.reset()}
         color="#FB9B9B"
+        exitFn={() => mutation.reset()}
         />}
         
-    {mutation.isSuccess && <Modal title={"Usuario Cadastrado com sucesso"} buttonMessage={"Logar"} buttonfn={() => navigate("/")}/>}
+    {mutation.isSuccess && <Modal 
+    title={"Usuario Cadastrado com sucesso"} 
+    buttonMessage={"Logar"} 
+    buttonfn={() => navigate("/")}
+    exitFn={()=> mutation.reset()}
+    />}
 
 </>
   )

@@ -48,6 +48,7 @@ function SelectedPassword() {
                 buttonMessage={"Voltar"} 
                 buttonfn={() =>navigate("/home")}
                 color="#9BFBB0"
+                exitFn={() => undefined}
             />
             </>)
     }
@@ -61,6 +62,7 @@ function SelectedPassword() {
                 buttonMessage={"voltar"} 
                 buttonfn={() =>navigate("/home")}
                 color="#FB9B9B"
+                exitFn={() => undefined}
             />
             </>)
         
@@ -75,6 +77,7 @@ function SelectedPassword() {
                 buttonMessage={"voltar"} 
                 buttonfn={() =>navigate("/home")}
                 color="#FB9B9B"
+                exitFn={() => undefined}
             />
             </>)
     }

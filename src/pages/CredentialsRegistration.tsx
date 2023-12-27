@@ -75,6 +75,7 @@ function CredentialsRegistration() {
         buttonMessage={"voltar"}
         buttonfn={() => post.reset()}
         color="#FB9B9B"
+        exitFn={() => post.reset()}
       />}
       {post.isSuccess && <Modal 
         title={"Credencial cadastrada!"}
@@ -82,6 +83,7 @@ function CredentialsRegistration() {
         buttonMessage={"Voltar para o inicio!"}
         buttonfn={() => nav("/home")}
         color="#9BFBB0"
+        exitFn={() => post.reset()}
       />}
 
       </>

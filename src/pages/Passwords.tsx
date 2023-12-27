@@ -33,6 +33,7 @@ function Passwords() {
                     buttonMessage={"voltar"} 
                     buttonfn={() =>navigate("/home")}
                     color="#FB9B9B"
+                    exitFn={() => undefined}
                 />
                 </>)
     }
@@ -59,6 +60,7 @@ function Passwords() {
                 buttonMessage={"voltar"} 
                 buttonfn={() =>navigate("/home")}
                 color="#FB9B9B"
+                exitFn={() => undefined}
             />
             </>)
     }

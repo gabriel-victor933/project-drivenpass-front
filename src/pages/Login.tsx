@@ -56,6 +56,7 @@ function Login() {
         buttonMessage={"voltar"} 
         buttonfn={() =>mutation.reset()}
         color="#FB9B9B"
+        exitFn={() =>mutation.reset()}
         />}
         
     </>
