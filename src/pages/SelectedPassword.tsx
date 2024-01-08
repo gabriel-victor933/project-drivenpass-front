@@ -2,7 +2,6 @@
 import { useNavigate, useParams } from "react-router-dom"
 import { InfoBlock } from "../styles/PageInfoStyle"
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query"
-import { useFetchData } from "../hooks/useFetchData"
 import { typesTranslation, typesSingularTranslation } from "../constants/objectsets"
 import Loading from "../components/Loading"
 import PasswordInfoStyled from "../styles/PasswordInfoStyled"
@@ -10,6 +9,7 @@ import ReturnButton from "../components/ReturnButton"
 import Modal from "../components/Modal"
 import ActionButton from "../components/ActionButton"
 import { useApiCall } from "../hooks/useApiCall"
+import ListItem from "../components/ListItem"
 
 
 function SelectedPassword() {
@@ -95,12 +95,9 @@ function SelectedPassword() {
         <InfoBlock>{typesTranslation[type]}</InfoBlock>
         <PasswordInfoStyled>
             <h1>{info.data.title}</h1>
-            {Object.keys(info.data).map((key)=>{
-                if(key == 'id' || key== 'userId') return <></>
-                return (<>
-                            <h1>{key}</h1>
-                            <h2>{info.data[key]}</h2>
-                        </>)
+            {Object.keys(info.data).map((key,i)=>{
+                if(key == 'id' || key == 'userId' ) return <></>
+                return (<ListItem id={i} title={key} value={info.data[key]}/>)
             })}
         </PasswordInfoStyled>
         <ReturnButton />

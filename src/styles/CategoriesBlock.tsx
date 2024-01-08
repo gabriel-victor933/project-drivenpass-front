@@ -1,6 +1,6 @@
 import {styled} from "styled-components"
 
-export const CategoriesBlock = styled.div`
+export const CategoriesBlock = styled.ul`
     width: 100%;
     display: flex;
     padding: 0px 10px;

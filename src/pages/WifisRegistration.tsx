@@ -2,28 +2,31 @@ import { useMutation } from '@tanstack/react-query'
 import { ButtonStyled } from '../styles/ButtonStyled'
 import RegistrationFormStyle from "../styles/RegistrationFormStyle"
 import {useForm} from "react-hook-form"
+import axios from 'axios'
 import Modal from '../components/Modal'
 import { useNavigate } from 'react-router-dom'
 import usePostData from '../hooks/usePostData'
 
-type NotesInput = {
+type WifisInput = {
     title: string,
-    text: string
+    network: string
+    password: string
 
 }
 
-function NotesRegistration() {
-    const { register, handleSubmit, formState: {errors} } = useForm<NotesInput>()
+function WifisRegistration() {
+    const { register, handleSubmit, formState: {errors} } = useForm<WifisInput>()
     const nav = useNavigate()
 
     const post = useMutation({
-        mutationFn: (data: NotesInput) => {
+        mutationFn: (data: WifisInput) => {
+            console.log(data)
             // eslint-disable-next-line react-hooks/rules-of-hooks
-            return usePostData<NotesInput>("notes",data);      
+            return usePostData<WifisInput>("wifis",data);      
         },
     })
 
-    function submit(data: NotesInput){
+    function submit(data: WifisInput){
         post.mutate(data)
     }
 
@@ -39,19 +42,23 @@ function NotesRegistration() {
         />
         <small>{errors?.title?.message || ""}</small>
 
-        <label>Texto</label>
-        <textarea
-        rows={10} cols={33}
-        {...register("text", { required: "Insira um texto válido!" })}
-          className={errors.text ? "error" : ""}
+        <label>Rede</label>
+        <input
+          type='text' {...register("network", { required: "Insira uma Rede!" })}
+          className={errors.network ? "error" : ""}
           disabled={post.isPending}
-        ></textarea>
-        <small>{errors?.text?.message || ""}</small>
+        />
+        <small>{errors?.network?.message || ""}</small>
 
-
+        <label>Senha</label>
+        <input
+          disabled={post.isPending}
+          type='password'
+          {...register("password", { required: "Insira uma Senha!" })}
+          className={errors.password ? "error" : ""} />
+        <small>{errors?.password?.message || ""}</small>
         <ButtonStyled>Criar</ButtonStyled>
       </RegistrationFormStyle>
-
       {post.isError && <Modal
         title={"Não foi possivel Cadastrar A credencial!"}
         description={`"${post.error?.response?.data.message || post.error.message}"`}
@@ -73,4 +80,4 @@ function NotesRegistration() {
   )
 }
 
-export default NotesRegistration
+export default WifisRegistration
