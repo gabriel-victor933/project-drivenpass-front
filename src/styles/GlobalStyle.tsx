@@ -61,6 +61,10 @@ const GlobalStyle = createGlobalStyle`
         color: #DBDBDB;
     }
 
+    input::-webkit-inner-spin-button {
+    -webkit-appearance: none;
+}
+
 `
 
 export default GlobalStyle

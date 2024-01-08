@@ -2,35 +2,40 @@ import { useMutation } from '@tanstack/react-query'
 import { ButtonStyled } from '../styles/ButtonStyled'
 import RegistrationFormStyle from "../styles/RegistrationFormStyle"
 import {useForm} from "react-hook-form"
-import axios from 'axios'
 import Modal from '../components/Modal'
 import { useNavigate } from 'react-router-dom'
 import usePostData from '../hooks/usePostData'
 
-type CredentialInput = {
-    title: string,
-    url: string,
-    username: string,
+type CardsInput = {
+    title: string
+    number: string
+    name: string
+    cvv: string
+    expirationDate: string
     password: string
-
+    isVirtual: boolean
+    type: "CREDIT" | "DEBT" | "BOTH" 
 }
 
-function CredentialsRegistration() {
-
-    const { register, handleSubmit, formState: {errors} } = useForm<CredentialInput>()
+function CardsRegistration () {
+    const { register, handleSubmit, formState: {errors }, setValue } = useForm<CardsInput>()
     const nav = useNavigate()
 
     const post = useMutation({
-        mutationFn: (data: CredentialInput) => {
+        mutationFn: (data: CardsInput) => {
+            console.log(data)
             // eslint-disable-next-line react-hooks/rules-of-hooks
-            return usePostData<CredentialInput>("credentials",data);      
+            return usePostData<CardsInput>("cards",data);      
         },
     })
 
-    function submit(data: CredentialInput){
+    function submit(data: CardsInput){
         post.mutate(data)
     }
-
+    
+    function validateCardNumber(cardNumber: string){
+        if(cardNumber.length != 16) return "O numero do cartão deve possuir 16 números"
+    }
   return (
     <>
       <RegistrationFormStyle onSubmit={handleSubmit(submit)} >
@@ -39,37 +44,31 @@ function CredentialsRegistration() {
           type='text'
           className={errors.title ? "error" : ""}
           disabled={post.isPending}
-          autoComplete='off'
           {...register("title", { required: "Insira um Titulo!" })}
+          autoComplete='off'
         />
         <small>{errors?.title?.message || ""}</small>
 
-        <label>URL</label>
+        <label>Número do Cartão</label>
         <input
-          type='text' {...register("url", { required: "Insira uma URL!" })}
-          className={errors.url ? "error" : ""}
+          type='number'
+          className={errors.number ? "error" : ""}
           disabled={post.isPending}
+        {...register("number",{required: "Insira O Número do cartão",validate: validateCardNumber})}
           autoComplete='off'
         />
-        <small>{errors?.url?.message || ""}</small>
+        <small>{errors?.number?.message || ""}</small>
 
-        <label>Usuário</label>
+        <label>Nome</label>
         <input
-          type='text' {...register("username", { required: "Insira um Usuário!" })}
-          className={errors.username ? "error" : ""}
+          type='text'
+          className={errors.name ? "error" : ""}
           disabled={post.isPending}
+          {...register("name", { required: "Insira um Nome!" })}
           autoComplete='off'
         />
-        <small>{errors?.username?.message || ""}</small>
+        <small>{errors?.name?.message || ""}</small>
 
-        <label>Senha</label>
-        <input
-          disabled={post.isPending}
-          type='password'
-          {...register("password", { required: "Insira uma Senha!" })}
-          className={errors.password ? "error" : ""} 
-          autoComplete='off'/>
-        <small>{errors?.password?.message || ""}</small>
         <ButtonStyled>Criar</ButtonStyled>
       </RegistrationFormStyle>
       {post.isError && <Modal
@@ -93,4 +92,4 @@ function CredentialsRegistration() {
   )
 }
 
-export default CredentialsRegistration
+export default CardsRegistration 

@@ -69,6 +69,7 @@ function SelectedPassword() {
     }
     
     if(info.isError){
+        console.log(info.error)
         return (<>
             <InfoBlock />
             <Modal 

@@ -36,6 +36,7 @@ function NotesRegistration() {
           className={errors.title ? "error" : ""}
           disabled={post.isPending}
           {...register("title", { required: "Insira um Titulo!" })}
+          autoComplete='off'
         />
         <small>{errors?.title?.message || ""}</small>
 
@@ -45,6 +46,7 @@ function NotesRegistration() {
         {...register("text", { required: "Insira um texto válido!" })}
           className={errors.text ? "error" : ""}
           disabled={post.isPending}
+          autoComplete='off'
         ></textarea>
         <small>{errors?.text?.message || ""}</small>
 

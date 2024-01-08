@@ -12,6 +12,7 @@ import RegistrationLayoult from "./components/RegistrationLayoult"
 import CredentialsRegistration from "./pages/CredentialsRegistration"
 import NotesRegistration from "./pages/NotesRegistration"
 import WifisRegistration from "./pages/WifisRegistration"
+import CardsRegistration from "./pages/CardsRegistration"
 
 function App() {
 
@@ -32,7 +33,7 @@ function App() {
             <Route path="register/data" element={<RegistrationLayoult />}>
                 <Route path="credentials" element={<CredentialsRegistration />} />
                 <Route path="notes" element={<NotesRegistration />} />
-                <Route path="cards" element={<h1>cards</h1>} />
+                <Route path="cards" element={<CardsRegistration />} />
                 <Route path="wifis" element={<WifisRegistration />} />
                 <Route path="*" element={<h1>not found!</h1>} />
             </Route>

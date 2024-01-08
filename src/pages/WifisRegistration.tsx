@@ -2,7 +2,6 @@ import { useMutation } from '@tanstack/react-query'
 import { ButtonStyled } from '../styles/ButtonStyled'
 import RegistrationFormStyle from "../styles/RegistrationFormStyle"
 import {useForm} from "react-hook-form"
-import axios from 'axios'
 import Modal from '../components/Modal'
 import { useNavigate } from 'react-router-dom'
 import usePostData from '../hooks/usePostData'
@@ -39,6 +38,7 @@ function WifisRegistration() {
           className={errors.title ? "error" : ""}
           disabled={post.isPending}
           {...register("title", { required: "Insira um Titulo!" })}
+          autoComplete='off'
         />
         <small>{errors?.title?.message || ""}</small>
 
@@ -47,6 +47,7 @@ function WifisRegistration() {
           type='text' {...register("network", { required: "Insira uma Rede!" })}
           className={errors.network ? "error" : ""}
           disabled={post.isPending}
+          autoComplete='off'
         />
         <small>{errors?.network?.message || ""}</small>
 
@@ -55,7 +56,8 @@ function WifisRegistration() {
           disabled={post.isPending}
           type='password'
           {...register("password", { required: "Insira uma Senha!" })}
-          className={errors.password ? "error" : ""} />
+          className={errors.password ? "error" : ""} 
+          autoComplete='off'/>
         <small>{errors?.password?.message || ""}</small>
         <ButtonStyled>Criar</ButtonStyled>
       </RegistrationFormStyle>
