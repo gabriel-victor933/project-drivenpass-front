@@ -29,6 +29,15 @@ const Title = styled.h1`
     color: #005985;
 `
 
+const Footer = styled.footer`
+    width: 100%;
+    height: 21px;
+    border: 3px;
+    background-color: #005985;
+    position: fixed;
+    bottom: 0px;
+`
+
 function HomeLayoult() {
     const navigate = useNavigate()
 
@@ -49,6 +58,7 @@ function HomeLayoult() {
             <Logo src={exit} $logoHeight={"45px"} onClick={handleExit}/>
         </Header>
         <Outlet />
+        <Footer />
     </>
 
   )

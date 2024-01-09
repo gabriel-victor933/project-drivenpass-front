@@ -26,6 +26,7 @@ const GlobalStyle = createGlobalStyle`
         display: flex;
         flex-direction: column;
         align-items: center;
+        padding-bottom: 31px;
     }
 
     h1, h2, h3, h4, h5, p {
