@@ -30,12 +30,32 @@ function CardsRegistration () {
     })
 
     function submit(data: CardsInput){
-        post.mutate(data)
+        console.log(data)
+        //post.mutate(data)
     }
     
     function validateCardNumber(cardNumber: string){
-        if(cardNumber.length != 16) return "O numero do cartão deve possuir 16 números"
+        if(!cardNumber) return "Insira o Número do cartão."
+
+        if(cardNumber.length != 16) return "O numero do cartão deve possuir 16 digitos"
+
+        if(cardNumber.split("").some((ele)=> ele == "-" ||ele=="e"||ele=="E"||ele==".")){
+          return "O numero do cartão deve possuir apenas números."
+        } 
     }
+
+    function validateExpirationDate(date: string){
+        if(!date) return "Insira o vencimento do Cartão."
+
+        const today = new Date()
+        const [year,month] = date.split("-")
+        
+        if(parseInt(year) < today.getFullYear()) return "Data de vencimento inválida."
+        if(parseInt(year)==today.getFullYear() && parseInt(month)-1 < today.getMonth()){
+          return "Data de vencimento inválida."
+        }
+    }
+
   return (
     <>
       <RegistrationFormStyle onSubmit={handleSubmit(submit)} >
@@ -54,7 +74,7 @@ function CardsRegistration () {
           type='number'
           className={errors.number ? "error" : ""}
           disabled={post.isPending}
-        {...register("number",{required: "Insira O Número do cartão",validate: validateCardNumber})}
+        {...register("number",{validate: validateCardNumber })}
           autoComplete='off'
         />
         <small>{errors?.number?.message || ""}</small>
@@ -64,10 +84,47 @@ function CardsRegistration () {
           type='text'
           className={errors.name ? "error" : ""}
           disabled={post.isPending}
-          {...register("name", { required: "Insira um Nome!" })}
+          {...register("name", { required: "Insira o Nome!" })}
           autoComplete='off'
         />
         <small>{errors?.name?.message || ""}</small>
+
+        <label>cvv</label>
+        <input
+          type='number'
+          className={errors.cvv ? "error" : ""}
+          disabled={post.isPending}
+          {...register("cvv", { required: "Insira o CVV!",
+          pattern: {value: /[0-9]{3}/, message: "Insira um cvv válido."} })}
+          autoComplete='off'
+        />
+        <small>{errors?.cvv?.message || ""}</small>
+
+        <label>Vencimento</label>
+        <input
+          type='month'
+          className={errors.expirationDate ? "error" : ""}
+          disabled={post.isPending}
+          {...register("expirationDate", { validate: validateExpirationDate})}
+          autoComplete='off'
+        />
+        <small>{errors?.expirationDate?.message || ""}</small>
+
+        <label>Senha</label>
+        <input
+          type='password'
+          className={errors.password ? "error" : ""}
+          disabled={post.isPending}
+          {...register("password", { required: "Insira a senha!" })}
+          autoComplete='off'
+        />
+        <small>{errors?.password?.message || ""}</small>
+        
+        <legend>Tipo de cartão:</legend>
+        <div className='checkbox'>
+          <input {...register("isVirtual")} type="checkbox"  />
+          <label htmlFor="isVirtual" >Cartão Virtual</label>
+        </div>
 
         <ButtonStyled>Criar</ButtonStyled>
       </RegistrationFormStyle>

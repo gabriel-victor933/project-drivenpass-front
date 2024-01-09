@@ -6,8 +6,8 @@ export const FormStyled = styled.form`
     width: 70%;
     margin: 30px 0px;
     
-    label {
-        text-align: center; 
+    label, legend {
+        text-align: left; 
         margin: 3px 0px;
         font-size: 18px;
         font-weight: 400;
@@ -29,5 +29,21 @@ export const FormStyled = styled.form`
     small {
         color: #F52424;
         min-height: 16px;
+    }
+
+    .checkbox {
+        display: flex;
+        justify-content: flex-start;
+        align-items: center;
+
+        input[type="checkbox"] {
+            height: 20px;
+            width: 20px; 
+            margin-right: 10px;
+        }
+
+        label {
+            font-size: 14px;
+        }
     }
 `
