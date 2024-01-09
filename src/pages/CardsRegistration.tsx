@@ -18,7 +18,7 @@ type CardsInput = {
 }
 
 function CardsRegistration () {
-    const { register, handleSubmit, formState: {errors }, setValue } = useForm<CardsInput>()
+    const { register, handleSubmit, formState: {errors } } = useForm<CardsInput>()
     const nav = useNavigate()
 
     const post = useMutation({
@@ -30,8 +30,8 @@ function CardsRegistration () {
     })
 
     function submit(data: CardsInput){
-        console.log(data)
-        //post.mutate(data)
+        data.expirationDate = data.expirationDate.replace("-","/")
+        post.mutate(data)
     }
     
     function validateCardNumber(cardNumber: string){
@@ -49,7 +49,6 @@ function CardsRegistration () {
 
         const today = new Date()
         const [year,month] = date.split("-")
-        
         if(parseInt(year) < today.getFullYear()) return "Data de vencimento inválida."
         if(parseInt(year)==today.getFullYear() && parseInt(month)-1 < today.getMonth()){
           return "Data de vencimento inválida."
@@ -126,6 +125,12 @@ function CardsRegistration () {
           <label htmlFor="isVirtual" >Cartão Virtual</label>
         </div>
 
+        <select {...register("type")}>
+          <option value="DEBT">Débito</option>
+          <option value="CREDIT">Crédito</option>
+          <option value="BOTH">Ambos</option>
+        </select>
+
         <ButtonStyled>Criar</ButtonStyled>
       </RegistrationFormStyle>
       {post.isError && <Modal
@@ -137,7 +142,7 @@ function CardsRegistration () {
         exitFn={() => post.reset()}
       />}
       {post.isSuccess && <Modal 
-        title={"Credencial cadastrada!"}
+        title={"Cartão cadastrado!"}
         description={``}
         buttonMessage={"Voltar para o inicio!"}
         buttonfn={() => nav("/home")}

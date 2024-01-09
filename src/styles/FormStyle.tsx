@@ -6,7 +6,7 @@ export const FormStyled = styled.form`
     width: 70%;
     margin: 30px 0px;
     
-    label, legend {
+    label, legend, select {
         text-align: left; 
         margin: 3px 0px;
         font-size: 18px;
@@ -35,6 +35,7 @@ export const FormStyled = styled.form`
         display: flex;
         justify-content: flex-start;
         align-items: center;
+        margin: 3px 0px 6px 0px;
 
         input[type="checkbox"] {
             height: 20px;

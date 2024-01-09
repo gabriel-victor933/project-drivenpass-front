@@ -97,7 +97,7 @@ function SelectedPassword() {
         <PasswordInfoStyled>
             <h1>{info.data.title}</h1>
             {Object.keys(info.data).map((key,i)=>{
-                if(key == 'id' || key == 'userId' ) return <></>
+                if(key == 'id' || key == 'userId' || key == 'title' ) return <></>
                 return (<ListItem id={i} title={key} value={info.data[key]}/>)
             })}
         </PasswordInfoStyled>
