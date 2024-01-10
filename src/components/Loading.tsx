@@ -2,12 +2,12 @@ import React from 'react'
 import { TailSpin } from 'react-loader-spinner'
 
 
-const Loading: React.FC<{size: string | undefined}> = ({size}) => {
+const Loading: React.FC<{size: string | undefined, color: string | undefined}> = ({size, color}) => {
   return (
     <TailSpin
         height={size || "80"}
         width={size || "80"}
-        color="#005985"
+        color={color || "#005985"}
         ariaLabel="tail-spin-loading"
         radius="1"
         wrapperStyle={{}}

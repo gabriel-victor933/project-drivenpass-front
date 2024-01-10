@@ -19,7 +19,7 @@ function Signup() {
 
   const mutation = useMutation({
     mutationFn: (newUser: SignUpInput) => {
-      return axios.post(`${import.meta.env.VITE_API_URL}/users/sign-up`,newUser)
+      return axios.post(`${import.meta.env.VITE_API_URL}/register/sign-up`,newUser)
     }
   })
 
