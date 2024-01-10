@@ -39,6 +39,20 @@ function SelectedPassword() {
         }
     })
 
+    if(!Object.keys(typesTranslation).includes(type)){
+        return (<>
+                <InfoBlock />
+                <Modal 
+                    title={"Error 404"} 
+                    description={`Página não encontrada`}
+                    buttonMessage={"voltar"} 
+                    buttonfn={() =>navigate("/home")}
+                    color="#FB9B9B"
+                    exitFn={() => undefined}
+                />
+                </>)
+    }
+
     if(deleteData.isSuccess){
         return (<>
             <InfoBlock />

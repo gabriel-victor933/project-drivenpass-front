@@ -13,6 +13,7 @@ import CredentialsRegistration from "./pages/CredentialsRegistration"
 import NotesRegistration from "./pages/NotesRegistration"
 import WifisRegistration from "./pages/WifisRegistration"
 import CardsRegistration from "./pages/CardsRegistration"
+import NotFoundComponent from "./components/NotFoundComponent"
 
 function App() {
 
@@ -24,6 +25,7 @@ function App() {
           <Route path="/"  element={<LoginLayoult />}> {/*telas de login*/}
             <Route index element={<Login />}/>
             <Route path="signup" element={<Signup />} />
+            <Route path="*" element={<NotFoundComponent url={"/"} btMessage={"Ir para Cadastro"}/>} />
           </Route> 
           <Route path="/home" element={<HomeLayoult />}>{/*telas de home*/}
             <Route index element={<Home />} />
@@ -35,8 +37,9 @@ function App() {
                 <Route path="notes" element={<NotesRegistration />} />
                 <Route path="cards" element={<CardsRegistration />} />
                 <Route path="wifis" element={<WifisRegistration />} />
-                <Route path="*" element={<h1>not found!</h1>} />
+                <Route path="*" element={<NotFoundComponent url={"/home"} btMessage={"Ir para o inicio"}/>} />
             </Route>
+            <Route path="*" element={<NotFoundComponent url={"/home"} btMessage={"Ir para o inicio"} />} />
           </Route> 
         </Routes>
       </BrowserRouter>
