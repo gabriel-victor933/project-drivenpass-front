@@ -14,12 +14,14 @@ import NotesRegistration from "./pages/NotesRegistration"
 import WifisRegistration from "./pages/WifisRegistration"
 import CardsRegistration from "./pages/CardsRegistration"
 import NotFoundComponent from "./components/NotFoundComponent"
+import { IconContext } from "react-icons"
 
 function App() {
 
   return (
     <>
       <GlobalStyle />
+      <IconContext.Provider value={{className: "big-icons"}}>
       <BrowserRouter>
         <Routes>
           <Route path="/"  element={<LoginLayoult />}> {/*telas de login*/}
@@ -43,6 +45,7 @@ function App() {
           </Route> 
         </Routes>
       </BrowserRouter>
+      </IconContext.Provider>
     </>
   )
 }

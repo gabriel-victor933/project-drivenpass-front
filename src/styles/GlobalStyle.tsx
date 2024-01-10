@@ -65,7 +65,12 @@ const GlobalStyle = createGlobalStyle`
     input::-webkit-inner-spin-button {
     -webkit-appearance: none;
 }
-
+    
+    .big-icons {
+        color: #005985;
+        width: 44px;
+        height: 44px;
+    }
 `
 
 export default GlobalStyle

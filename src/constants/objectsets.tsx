@@ -1,7 +1,6 @@
-import cred from "../assets/images/credentials.png"
-import notes from "../assets/images/notes.png"
-import cards from "../assets/images/cards.png"
-import wifi from "../assets/images/wifi.png"
+
+import { TfiAgenda, TfiRssAlt, TfiCreditCard, TfiUser } from "react-icons/tfi";
+
 
 export const typesTranslation = {
     credentials: "Credenciais",
@@ -17,9 +16,9 @@ export const typesSingularTranslation = {
     wifis: "Nenhuma Senha de Wifi encontrada."
 }
 
-export const imagesTranslation = {
-    credentials: cred,
-    notes: notes,
-    cards: cards,
-    wifis: wifi
+export const iconsTranslation = {
+    credentials: TfiUser,
+    notes: TfiAgenda,
+    cards: TfiCreditCard,
+    wifis: TfiRssAlt
 }
