@@ -1,27 +1,71 @@
-# React + TypeScript + Vite
+## Driven Pass:
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+* Navegar na internet pode ser uma atividade muito divertida, mas ao mesmo tempo, muito perigosa. Inúmeros estudos e levantamentos (nacionais e internacionais) mostram que o número de golpes virtuais não param de crescer. O que levanta a questão: como nos proteger?
 
-Currently, two official plugins are available:
+* Existem várias formas diferentes. Tudo começa com o uso de senhas diferentes e seguras. Para uma senha ser segura, ela deve conter vários caracteres e números misturados, sem contar que o quanto mais longa ela for, melhor.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+* Só que como vamos memorizar senhas gigantes e sem significado semântico? É para resolver essa dor que os gerenciadores de senhas surgiram! Com eles, criamos apenas uma senha “mestra” e todas as outras senhas ficam gravadas em segredo! Logo, quando precisamos dela, basta lembrar da senha “mestra” (que obviamente também precisa ser segura)!
 
-## Expanding the ESLint configuration
+## Resumo das Funcionalidades
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+#### Cadastro de Usuário:
 
-- Configure the top-level `parserOptions` property like this:
+- Permite que os usuários se cadastrem na plataforma.
+- Os usuários recebem credenciais de acesso únicas após o cadastro.
+#### Armazenamento de Senhas:
 
-```js
-   parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json'],
-    tsconfigRootDir: __dirname,
-   },
+- Capacidade de armazenar diferentes tipos de senhas, incluindo credenciais de sites, notas seguras, informações de cartões e senhas de Wi-Fi.
+
+#### Visualização por Tipo:
+
+- Os usuários podem visualizar todas as suas senhas categorizadas por tipo (sites, notas, cartões, Wi-Fi).
+- Facilita a organização e acesso rápido às informações desejadas.
+#### Visualização Individual de Senha:
+
+- Os usuários têm a opção de visualizar detalhes de uma senha específica.
+- Fornece uma visão detalhada das informações armazenadas para cada senha.
+#### Gerenciamento de Senhas:
+
+- Os usuários podem adicionar novas senhas ou remover senhas existentes conforme necessário.
+- Flexibilidade para adaptar o gerenciamento de senhas de acordo com as preferências do usuário.
+#### JWT para Autenticação:
+
+- Utiliza JSON Web Tokens (JWT) para autenticação de usuários.
+- Oferece uma forma segura de armazenar informações de sessão do usuário.
+#### Criptografia de Dados Sensíveis:
+
+- Todos os dados sensíveis, como senhas e informações de conta, são criptografados antes de serem armazenados.
+- Reforça a segurança e protege as informações confidenciais dos usuários.
+#### Exclusão de Conta:
+
+- Permite que os usuários excluam suas contas, removendo todas as informações associadas.
+- Garante um processo seguro e eficiente para encerrar a participação na plataforma.
+
+#### Teste de Integração:
+
+- Testes simulam operações reais, assegurando a integridade do fluxo de dados e a consistência das funcionalidades.
+- Contribui para a confiabilidade e estabilidade do sistema, minimizando erros e falhas durante o uso.
+
+## Tecnologias 
+
+[![](https://img.shields.io/badge/TypeScript-007ACC?style=for-the-badge&logo=typescript&logoColor=white)]()
+[![](https://img.shields.io/badge/React-20232A?style=for-the-badge&logo=react&logoColor=61DAFB)]()
+[![](https://img.shields.io/badge/React_Router-CA4245?style=for-the-badge&logo=react-router&logoColor=white)]()
+[![](https://img.shields.io/badge/styled--components-DB7093?style=for-the-badge&logo=styled-components&logoColor=whitee)]()
+[![](https://img.shields.io/badge/GIT-E44C30?style=for-the-badge&logo=git&logoColor=white)]()
+
+## Como Rodar
+1. Clone esse repositório;
+2. Crie uma arquivo `.env` e insera as seguintes variavéis;
 ```
+VITE_API_URL = "API_URL" 
+```
+3. Instale as dependências:
+```
+npm i
+```
+```
+4. Execute o projeto em desenvolvimento usando:
+```
+npm run dev
 
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
