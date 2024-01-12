@@ -27,7 +27,7 @@ function Signup() {
       mutation.mutate(data)
   }
 
-  if(mutation.isPending) return (<Loading />)
+  if(mutation.isPending) return (<Loading size={undefined} color={undefined}/>)
 
   return (
     <>
@@ -46,7 +46,8 @@ function Signup() {
     </FormStyled>
     {mutation.isError && <Modal 
         title={"Não foi possivel cadastrar o usuario"} 
-        description={`"${mutation.error.response?.data.message || mutation.error.message}"`}
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        description={`"${(mutation.error as any).response?.data.message || mutation.error.message}"`}
         buttonMessage={"voltar"} 
         buttonfn={() =>mutation.reset()}
         color="#FB9B9B"

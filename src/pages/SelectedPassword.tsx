@@ -39,7 +39,7 @@ function SelectedPassword() {
         }
     })
 
-    if(!Object.keys(typesTranslation).includes(type)){
+    if(type == undefined || !Object.keys(typesTranslation).includes(type)){
         return (<>
                 <InfoBlock />
                 <Modal 
@@ -67,11 +67,12 @@ function SelectedPassword() {
             </>)
     }
 
-    if(info.isError && info.error?.response?.status == "404"){
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    if(info.isError && (info.error as any)?.response?.status == "404"){
         return (<>
             <InfoBlock />
             <Modal 
-                title={typesSingularTranslation[type]} 
+                title={(typesSingularTranslation as never)[type]} 
                 description={``}
                 buttonMessage={"voltar"} 
                 buttonfn={() =>navigate("/home")}
@@ -100,14 +101,14 @@ function SelectedPassword() {
     if(info.isLoading || deleteData.isPending){
         return (<>
                 <InfoBlock>Loading...</InfoBlock>
-                <Loading />
+                <Loading size={undefined} color={undefined}/>
                 </>)
         
     }  
     
   return (
     <>
-        <InfoBlock>{typesTranslation[type]}</InfoBlock>
+        <InfoBlock>{(typesTranslation as never)[type]}</InfoBlock>
         <PasswordInfoStyled>
             <h1>{info.data.title}</h1>
             {Object.keys(info.data).map((key,i)=>{

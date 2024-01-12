@@ -2,7 +2,6 @@ import { useMutation } from '@tanstack/react-query'
 import { ButtonStyled } from '../styles/ButtonStyled'
 import RegistrationFormStyle from "../styles/RegistrationFormStyle"
 import {useForm} from "react-hook-form"
-import axios from 'axios'
 import Modal from '../components/Modal'
 import { useNavigate } from 'react-router-dom'
 import usePostData from '../hooks/usePostData'
@@ -74,7 +73,8 @@ function CredentialsRegistration() {
       </RegistrationFormStyle>
       {post.isError && <Modal
         title={"Não foi possivel Cadastrar A credencial!"}
-        description={`"${post.error?.response?.data.message || post.error.message}"`}
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        description={`"${(post.error as any).response?.data.message || post.error.message}"`}
         buttonMessage={"voltar"}
         buttonfn={() => post.reset()}
         color="#FB9B9B"

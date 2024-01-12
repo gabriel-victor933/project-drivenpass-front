@@ -5,10 +5,11 @@ import ReturnButton from "./ReturnButton"
 import {CategoriesBlock} from "../styles/CategoriesBlock"
 
 function RegistrationLayoult(){
-    const loc = useLocation()
-    const type = loc.pathname.split("/").pop();
+    
+    const type = useLocation().pathname.split("/").pop() || "error";
+    
     return(<>
-            <InfoBlock>{typesTranslation[type]}</InfoBlock>
+            <InfoBlock>{(typesTranslation as never)[type]}</InfoBlock>
             <CategoriesBlock>
                 <h1>Cadastro</h1>
             </CategoriesBlock>

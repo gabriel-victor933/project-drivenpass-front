@@ -6,5 +6,7 @@ export function useApiCall(url: string | undefined, method: string){
         method,
         url: `${import.meta.env.VITE_API_URL}/${url}`,
         headers: {'authorization': `bearer ${token}`}
-    }).then((res)=>res.data)
+    })
+    .then((res)=>res.data)
+    .catch(err => err)
 }

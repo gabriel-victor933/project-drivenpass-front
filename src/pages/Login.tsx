@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { FormStyled } from "../styles/FormStyle"
 import { ButtonStyled } from "../styles/ButtonStyled"
 import { Link, useNavigate } from "react-router-dom"
@@ -23,7 +24,7 @@ function Login() {
       return axios.post(`${import.meta.env.VITE_API_URL}/register/sign-in`, userInfos)
     },
     onSuccess: (data: unknown) => {
-      localStorage.setItem("token",data?.data?.token)
+      localStorage.setItem("token",(data as any)?.data?.token)
         navigate("/home")
     }
   })
@@ -32,7 +33,7 @@ function Login() {
     mutation.mutate(data)
   }
 
-  if(mutation.isPending) return (<Loading />)
+  if(mutation.isPending) return (<Loading size={undefined} color={undefined}/>)
 
 
   return (
@@ -52,7 +53,7 @@ function Login() {
         </Link>
         {mutation.isError && <Modal 
         title={"Não foi possivel logar, verifique o email e a senha"} 
-        description={`"${mutation.error?.response?.data.message || mutation.error.message}"`}
+        description={`"${(mutation.error as any)?.response?.data.message || mutation.error.message}"`}
         buttonMessage={"voltar"} 
         buttonfn={() =>mutation.reset()}
         color="#FB9B9B"

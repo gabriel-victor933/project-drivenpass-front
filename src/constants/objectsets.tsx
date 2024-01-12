@@ -6,7 +6,8 @@ export const typesTranslation = {
     credentials: "Credenciais",
     notes: "Notas Seguras",
     cards: "Cartões",
-    wifis: "Senhas de Wifi"
+    wifis: "Senhas de Wifi",
+    error: ""
 }
 
 export const typesSingularTranslation = {

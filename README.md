@@ -56,7 +56,7 @@
 
 ## Como Rodar
 1. Clone esse repositório;
-2. Crie uma arquivo `.env` e insera as seguintes variavéis;
+2. Crie uma arquivo `.env` e insera a URL da API;
 ```
 VITE_API_URL = "API_URL" 
 ```

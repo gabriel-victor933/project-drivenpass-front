@@ -24,7 +24,7 @@ function Passwords() {
         retry: false
         })
 
-    if(!Object.keys(typesTranslation).includes(type)){
+    if(type == undefined || !Object.keys(typesTranslation).includes(type)){
         return (<>
                 <InfoBlock />
                 <Modal 
@@ -36,15 +36,16 @@ function Passwords() {
                     exitFn={() => undefined}
                 />
                 </>)
-    }
-
-    if(info.isError && info.error?.response?.status == "404"){
+    }   
+    
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    if(info.isError && (info.error as any)["response"]?.status == "404"){
         return (<>
-                <InfoBlock>{typesTranslation[type]}</InfoBlock>
+                <InfoBlock>{(typesTranslation as never)[type]}</InfoBlock>
                 <CategoriesBlock>
-                    <h2>{typesSingularTranslation[type]}</h2>
+                    <h2>{(typesSingularTranslation as never)[type]}</h2>
                 </CategoriesBlock>
-                <ActionButton url={`/home/register/${type}/data`} backColor="">
+                <ActionButton fn={() => navigate(`/home/register/${type}/data`)} backColor="">
                     +
                 </ActionButton>
                 </>) 
@@ -68,16 +69,18 @@ function Passwords() {
     if(info.isLoading){
         return (<>
                 <InfoBlock>Loading...</InfoBlock>
-                <Loading />
+                <Loading size={undefined} color={undefined}/>
                 </>)
         
     } 
     
   return (
     <>
-        <InfoBlock>{typesTranslation[type]}</InfoBlock>
-        {info.data.map((pass)=>{
-            const Icon = iconsTranslation[type];
+        <InfoBlock>{(typesTranslation as never)[type]}</InfoBlock>
+        {info.data.map((pass: {id: number, title: string})=>{
+            
+            // eslint-disable-next-line @typescript-eslint/no-explicit-any
+            const Icon = (iconsTranslation as any)[type];
             return (<CategoriesBlock key={pass.id}>
                 
                 <Icon />
