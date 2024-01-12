@@ -8,5 +8,5 @@ export function useApiCall(url: string | undefined, method: string){
         headers: {'authorization': `bearer ${token}`}
     })
     .then((res)=>res.data)
-    .catch(err => err)
+    
 }
