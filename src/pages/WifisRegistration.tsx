@@ -71,7 +71,7 @@ function WifisRegistration() {
         exitFn={() => post.reset()}
       />}
       {post.isSuccess && <Modal 
-        title={"Credencial cadastrada!"}
+        title={"Rede cadastrada!"}
         description={``}
         buttonMessage={"Voltar para o inicio!"}
         buttonfn={() => nav("/home")}

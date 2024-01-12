@@ -64,7 +64,7 @@ function NotesRegistration() {
         exitFn={() => post.reset()}
       />}
       {post.isSuccess && <Modal 
-        title={"Credencial cadastrada!"}
+        title={"Nota cadastrada!"}
         description={``}
         buttonMessage={"Voltar para o inicio!"}
         buttonfn={() => nav("/home")}
